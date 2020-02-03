@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/getUser/:id', async (req, res) => {
+router.get('/', async (req, res) => {
 
     const result = await Products.findOne({ mobileNumber: { $eq: parseInt(req.params.id) } })
     res.send(result)
