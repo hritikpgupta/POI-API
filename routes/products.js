@@ -1,4 +1,4 @@
-const { Products, Variant, validate } = require('../models/product');
+const { Products, validate } = require('../models/product');
 const express = require('express');
 const router = express.Router();
 
@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
 
     const result = await Products.find()
     res.send(result)
+    
 
 
 })
