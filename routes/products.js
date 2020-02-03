@@ -1,4 +1,4 @@
-const { Products, Variant, validate } = require('../models/product');
+const { Products, validate } = require('../models/product');
 const express = require('express');
 const router = express.Router();
 
@@ -21,10 +21,11 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/', async (req, res) => {
+router.get('/getUser/:id', async (req, res) => {
 
-    const result = await Products.find()
+    const result = await Products.findOne({ mobileNumber: { $eq: parseInt(req.params.id) } })
     res.send(result)
+    console.log(req.params.id)
 
 
 })

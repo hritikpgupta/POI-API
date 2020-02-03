@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const products = require('./routes/products')
+const users = require('./routes/users')
 const app = express()
 
 
@@ -12,6 +13,7 @@ mongoose
 
 app.use(express.json())
 app.use('/products', products)
+app.use('/users', users)
 
 
 const port = process.env.PORT || 3000;

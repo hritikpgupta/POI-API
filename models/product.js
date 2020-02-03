@@ -7,7 +7,7 @@ const variantSchema = new mongoose.Schema({
     url: { type: String, required: true }
 });
 
-const Variant = mongoose.model('Author', variantSchema);
+//const Variant = mongoose.model('Author', variantSchema);
 const Products = mongoose.model('Products', new mongoose.Schema({
 
     uniqueID: { type: String, required: true },
@@ -30,5 +30,5 @@ function validateProducts(product) {
 }
 
 exports.Products = Products;
-exports.Variant = Variant;
+//exports.Variant = Variant;
 exports.validate = validateProducts;
