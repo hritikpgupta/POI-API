@@ -26,11 +26,10 @@ router.post('/', async (req, res) => {
 
 })
 
-router.get('/getUser/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
 
-    const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+    const result = await User.findOne({ mobileNumber: {$eq: req.params.id} })
     res.send(result)
-
 })
 
 
