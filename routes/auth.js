@@ -1,4 +1,6 @@
 const { User } = require('../models/user')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
 const _ = require('lodash')
@@ -16,10 +18,19 @@ router.post('/', async (req, res) => {
     if (!user) return res.status(400).send('No account registered with this number .')
 
     const validPassword = await bcrypt.compare(req.body.password, user.password)
-        
-    if(validPassword){
-        res.send(user)
-    }else{
+
+    if (validPassword) {
+
+        dotenv.config()
+        const token = jwt.sign(
+            {
+                mobileNumber: user.mobileNumber,
+                password: req.body.password
+            },
+            process.env['JWT_PRIVATE_KEY'])
+
+        res.header('x-auth-token', token).send({ status: "success" })
+    } else {
         res.status(400).send('Wrong Password.')
     }
 

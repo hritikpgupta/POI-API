@@ -6,7 +6,6 @@ const auth = require('./routes/auth')
 const app = express()
 
 
-
 mongoose
     .connect('mongodb+srv://buuzuu:goforgold@mongo-demo-cluster-fu0uk.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB....'))

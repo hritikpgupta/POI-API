@@ -1,6 +1,8 @@
 const { User, validate } = require('../models/user')
 const bcrypt = require('bcrypt')
 const express = require('express');
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -26,13 +28,21 @@ router.post('/', async (req, res) => {
 
     user = await user.save()
 
-    res.send(user)
+    dotenv.config()
+    const token = jwt.sign(
+        {
+            mobileNumber: req.body.mobileNumber,
+            password: req.body.password
+        },
+        process.env['JWT_PRIVATE_KEY'])
+
+    res.header('x-auth-token', token).send(user)
 
 })
 
 router.get('/:id', async (req, res) => {
 
-    const result = await User.findOne({ mobileNumber: {$eq: req.params.id} })
+    const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     res.send(result)
 })
 
