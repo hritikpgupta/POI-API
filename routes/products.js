@@ -1,5 +1,6 @@
 const { Products, validate } = require('../models/product');
 const express = require('express');
+const auth = require('../middleware/authenticate')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -25,8 +26,6 @@ router.get('/', async (req, res) => {
 
     const result = await Products.find()
     res.send(result)
-    
-
 
 })
 

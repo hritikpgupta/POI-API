@@ -40,6 +40,16 @@ const User = mongoose.model('Users', new mongoose.Schema({
 
 }))
 
+// userSchema.methods.generateAuthToken = function(){
+//     const token = jwt.sign(
+//         {
+//             mobileNumber: req.body.mobileNumber,
+//             password: req.body.password
+//         },
+//         config.get('jwtPrivateKey'))
+//         return token;
+// }
+
 function validateUser(user) {
     const schema = {
         id: Joi.string().required(),
