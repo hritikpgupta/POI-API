@@ -2,8 +2,16 @@ const mongoose = require('mongoose')
 const express = require('express')
 const products = require('./routes/products')
 const users = require('./routes/users')
+const config = require('config')
 const auth = require('./routes/auth')
 const app = express()
+
+
+if (!config.get('jwtPrivateKey')) {
+    console.error('jwt Key Not defined')
+    process.exit(1)
+}
+
 
 
 mongoose

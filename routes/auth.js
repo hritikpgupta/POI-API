@@ -1,8 +1,9 @@
 const { User } = require('../models/user')
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
+//const dotenv = require('dotenv')
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
+const config = require('config')
 const _ = require('lodash')
 const express = require('express');
 const router = express.Router();
@@ -21,13 +22,14 @@ router.post('/', async (req, res) => {
 
     if (validPassword) {
 
-        dotenv.config()
+        //dotenv.config()
         const token = jwt.sign(
             {
-                mobileNumber: user.mobileNumber,
+                mobileNumber: user.mobileNumber, 
                 password: req.body.password
             },
-            process.env['JWT_PRIVATE_KEY'])
+            config.get('jwtPrivateKey'))
+            // process.env['JWT_PRIVATE_KEY']
 
         res.header('x-auth-token', token).send({ status: "success" })
     } else {
