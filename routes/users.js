@@ -2,7 +2,7 @@ const { User, validate } = require('../models/user')
 const bcrypt = require('bcrypt')
 const express = require('express');
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
+const config = require('config')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -28,13 +28,13 @@ router.post('/', async (req, res) => {
 
     user = await user.save()
 
-    dotenv.config()
+    
     const token = jwt.sign(
         {
             mobileNumber: req.body.mobileNumber,
             password: req.body.password
         },
-        process.env['JWT_PRIVATE_KEY'])
+        config.get('jwtPrivateKey'))
 
     res.header('x-auth-token', token).send(user)
 
