@@ -7,10 +7,9 @@ const variantSchema = new mongoose.Schema({
     url: { type: String, required: true }
 });
 
-//const Variant = mongoose.model('Author', variantSchema);
 const Products = mongoose.model('Products', new mongoose.Schema({
 
-    uniqueID: { type: String, required: true },
+    uniqueID: { type: String, required: true, unique: true },
     productName: { type: String, required: true },
     variants: [variantSchema],
     description: { type: String, required: true, minlength: 15 },
@@ -30,5 +29,4 @@ function validateProducts(product) {
 }
 
 exports.Products = Products;
-//exports.Variant = Variant;
 exports.validate = validateProducts;

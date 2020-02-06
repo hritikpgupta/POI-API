@@ -1,6 +1,5 @@
 const { Products, validate } = require('../models/product');
 const express = require('express');
-const auth = require('../middleware/authenticate')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -13,25 +12,13 @@ router.post('/', async (req, res) => {
         variants: req.body.variants,
         description: req.body.description,
         generalUrl: req.body.generalUrl
-
     })
     product = await product.save()
-
     res.send(product)
-
 })
-
-
 router.get('/', async (req, res) => {
 
     const result = await Products.find()
     res.send(result)
-
 })
-
-
-
-
-
-
 module.exports = router; 

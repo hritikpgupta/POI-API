@@ -20,16 +20,12 @@ router.post('/', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
 
     if (validPassword) {
-
-
         const token = jwt.sign(
             {
-                mobileNumber: user.mobileNumber, 
+                mobileNumber: user.mobileNumber,
                 password: req.body.password
             },
             config.get('jwtPrivateKey'))
-          
-
         res.header('x-auth-token', token).send({ status: "success" })
     } else {
         res.status(400).send('Wrong Password.')
