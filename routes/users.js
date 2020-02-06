@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     } else {
 
         let user = new User({
-            id: req.body.id,
+           // id: req.body.id,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             companyName: req.body.companyName,
@@ -96,7 +96,7 @@ router.put('/addToWishlist/:id', auth, async (req, res) => {
     mywishList.push(wishlist)
     user.wishlistProducts = mywishList
     wishlist = await user.save()
-    res.send(wishlist)
+    res.send({ success: "Updated" })
 })
 
 router.delete('/deleteWishListProduct/:id/:uniqueID', auth, async (req, res) => {
@@ -137,7 +137,7 @@ router.put('/addOrder/:id', auth, async (req, res) => {
     myOrders.push(order)
     user.orders = myOrders
     order = await user.save()
-    res.send(order)
+    res.send({ success: "Updated" })
 
 })
 

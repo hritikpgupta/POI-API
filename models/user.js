@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 
 const wishListSchema = mongoose.Schema({
-    uniqueID: { type: String, required: true },
+    uniqueID: { type: String, required: true, unique: true },
     productName: { type: String, require: true },
     generalUrl: { type: String, required: true }
 })
@@ -15,7 +15,6 @@ const item = mongoose.Schema({
     amount: { type: Number, require: true }
 })
 
-
 const ordersSchema = mongoose.Schema({
     orderID: { type: String, required: true },
     totalAmount: { type: Number, required: true },
@@ -26,11 +25,11 @@ const ordersSchema = mongoose.Schema({
 })
 
 const User = mongoose.model('Users', new mongoose.Schema({
-    id: { type: String, required: true },
+    // id: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String },
     companyName: { type: String, required: true },
-    mobileNumber: { type: Number, required: true, unique:true},
+    mobileNumber: { type: Number, required: true, unique: true },
     email: { type: String },
     password: { type: String, required: true, minlength: 8 },
     address: { type: String, required: true, minlength: 10 },
@@ -42,7 +41,7 @@ const User = mongoose.model('Users', new mongoose.Schema({
 
 function validateUser(user) {
     const schema = {
-        id: Joi.string().required(),
+        // id: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName: Joi.string().allow('').optional(),
         companyName: Joi.string().required(),
