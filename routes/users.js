@@ -66,7 +66,7 @@ router.put('/:id', auth, async (req, res) => {
     })
 
     await user.save()
-    res.send(success: "Updated")
+    res.send({ success: "Updated" })
 })
 
 router.get('/orders/:id', auth, async (req, res) => {
