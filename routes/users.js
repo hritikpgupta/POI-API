@@ -73,14 +73,14 @@ router.get('/orders/:id', auth, async (req, res) => {
 
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } }).select({ orders: 1 })
     if (!result) return res.status(400).send({ error: "Not Found" })
-    res.send(result)
+    res.send(result.orders)
 })
 
 router.get('/wishlist/:id', auth, async (req, res) => {
 
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } }).select({ wishlistProducts: 1 })
     if (!result) return res.status(400).send({ error: "Not Found" })
-    res.send(result)
+    res.send(result.wishlistProducts)
 })
 
 router.put('/addToWishlist/:id', auth, async (req, res) => {
