@@ -50,6 +50,25 @@ router.get('/:id', async (req, res) => {
     res.send(result)
 })
 
+router.put('/:id', auth, async (req, res) => {
+    let user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+    if (!user) return res.status(400).send('Number not registered.')
+
+    user.set({
+
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        companyName: req.body.companyName,
+        email: req.body.email,
+        address: req.body.address,
+        gstin: req.body.gstin,
+
+    })
+
+    await user.save()
+    res.send(success: "Updated")
+})
+
 router.get('/orders/:id', auth, async (req, res) => {
 
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } }).select({ orders: 1 })
