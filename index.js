@@ -22,10 +22,6 @@ if (!config.get('jwtPrivateKey')) {
     console.error('api secret Not defined')
     process.exit(1)
 }
-
-
-
-
 mongoose
     .connect('mongodb+srv://buuzuu:goforgold@mongo-demo-cluster-fu0uk.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB....'))
