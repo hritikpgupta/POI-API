@@ -5,9 +5,10 @@ const reset = require('./routes/passwordReset')
 const users = require('./routes/users')
 const config = require('config')
 const auth = require('./routes/auth')
+const upload = require('./routes/uploadProfilePic')
 const app = express()
 
-if (!config.get('jwtPrivateKey')) {
+if (!config.get('jwtPrivateKey') || !config.get('cloudName') || !config.get('api_key')) {
     console.error('jwt Key Not defined')
     process.exit(1)
 }
@@ -21,6 +22,8 @@ app.use('/products', products)
 app.use('/users', users)
 app.use('/auth', auth)
 app.use('/resetPassword', reset)
+app.use('/uploadProfileImage', upload)
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

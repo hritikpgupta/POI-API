@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
            // id: req.body.id,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            profileImage: "",
             companyName: req.body.companyName,
             mobileNumber: req.body.mobileNumber,
             email: req.body.email,
