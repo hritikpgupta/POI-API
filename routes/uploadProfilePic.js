@@ -6,23 +6,19 @@ const cloudinary = require('cloudinary').v2;
 const multer = require('multer')
 const fs = require('fs')
 const config = require('config')
-require('dotenv').config()
+
 
 // cloudinary.config({
 //     cloud_name: config.get('cloudName'),
 //     api_key: config.get('api_key'),
 //     api_secret: config.get('api_secret')
 // });
-// cloudinary.config({
-//     cloud_name: 'buuzuu',
-//     api_key: '813843356588537',
-//     api_secret: 'F-SoOYvo-BDMB0701qL0FvkP3M0'
-// });
 cloudinary.config({
-    cloud_name: process.env.cloud_name,
-    api_key: process.env.api_key,
-    api_secret: process.env.api_key
+    cloud_name: 'buuzuu',
+    api_key: '813843356588537',
+    api_secret: 'F-SoOYvo-BDMB0701qL0FvkP3M0'
 });
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
