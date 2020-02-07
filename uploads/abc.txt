@@ -1,0 +1,1 @@
+Since it's an emply folder, git is ignoring this folder.
