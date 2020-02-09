@@ -13,11 +13,6 @@ cloudinary.config({
     api_key: config.get('api_key'),
     api_secret: config.get('api_secret')
 });
-// cloudinary.config({
-//     cloud_name: 'buuzuu',
-//     api_key: '813843356588537',
-//     api_secret: 'F-SoOYvo-BDMB0701qL0FvkP3M0'
-// });
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
