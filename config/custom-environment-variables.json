@@ -1,3 +1,6 @@
 {
-    "jwtPrivateKey" : "poi_jwtPrivateKey"
+    "jwtPrivateKey": "poi_jwtPrivateKey",
+    "cloudName": "poi_cloudName",
+    "api_key": "poi_api_key",
+    "api_secret": "poi_api_secret"
 }

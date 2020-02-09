@@ -1,3 +1,6 @@
 {
-    "jwtPrivateKey" : ""
+    "jwtPrivateKey": "",
+    "cloudName": "",
+    "api_key": "",
+    "api_secret": ""
 }

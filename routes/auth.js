@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
 const config = require('config')
-const _ = require('lodash')
 const express = require('express');
 const router = express.Router();
-
 
 router.post('/', async (req, res) => {
 
@@ -20,16 +18,12 @@ router.post('/', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
 
     if (validPassword) {
-
-
         const token = jwt.sign(
             {
-                mobileNumber: user.mobileNumber, 
+                mobileNumber: user.mobileNumber,
                 password: req.body.password
             },
             config.get('jwtPrivateKey'))
-          
-
         res.header('x-auth-token', token).send({ status: "success" })
     } else {
         res.status(400).send('Wrong Password.')
