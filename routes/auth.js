@@ -9,11 +9,11 @@ const router = express.Router();
 router.post('/', async (req, res) => {
 
     const { error } = validate(req.body)
-    if (error) return res.status(400).send(error.details[0].message)
+    if (error) return res.status(400).send( {error: error.details[0].message})
 
     let user = await User.findOne({ mobileNumber: req.body.mobileNumber })
 
-    if (!user) return res.status(400).send('No account registered with this number .')
+    if (!user) return res.status(400).send( {error: 'No account registered with this number .'})
 
     const validPassword = await bcrypt.compare(req.body.password, user.password)
 
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
             config.get('jwtPrivateKey'))
         res.header('x-auth-token', token).send({ status: "success" })
     } else {
-        res.status(400).send('Wrong Password.')
+        res.status(400).send({error: 'Wrong Password.'})
     }
 
 })
