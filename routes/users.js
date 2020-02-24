@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth,async (req, res) => {
 
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!result) return res.status(400).send({error: 'Number not registered.'})
