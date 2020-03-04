@@ -43,7 +43,7 @@ router.post('/:id', auth, async (req, res, next) => {
                 let user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
                 user.profileImage = image.secure_url
                 await user.save()
-                res.send({ success: image.url })
+                res.send({ success: image.secure_url })
             }
         )
     })
