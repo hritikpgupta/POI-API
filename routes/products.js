@@ -23,6 +23,12 @@ router.get('/', async (req, res) => {
     res.send(result)
 })
 
+router.get('/:uniqueID', auth, async(req,res) =>{
+    let product = await Products.findOne({ uniqueID: req.params.uniqueID })
+    if (!product) return res.status(400).send("Can't find product.")
+    res.send(product)
+})
+
 router.put('/:uniqueID', auth, async (req, res) => {
 
     let product = await Products.findOne({ uniqueID: req.params.uniqueID })
