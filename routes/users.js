@@ -87,6 +87,7 @@ router.get('/wishlist/:id', auth, async (req, res) => {
 })
 
 router.put('/addToWishlist/:id', auth, async (req, res) => {
+
     const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!user) return res.status(400).send({ error: "Not Found" })
     let wishlist = {
@@ -94,9 +95,24 @@ router.put('/addToWishlist/:id', auth, async (req, res) => {
         productName: req.body.productName,
         generalUrl: req.body.generalUrl
     }
+    let check = false
+    var w 
     let mywishList = []
     mywishList = user.wishlistProducts
-    mywishList.push(wishlist)
+    if(mywishList.length === 0){
+        mywishList.push(wishlist)
+    }else{
+        for( w of mywishList){
+            if(w.uniqueID === wishlist.uniqueID){
+                check = true
+            }
+        }
+        if(check === false){
+            mywishList.push(wishlist)
+        }
+
+    }
+
     user.wishlistProducts = mywishList
     wishlist = await user.save()
     res.send({ success: "Updated" })
