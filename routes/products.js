@@ -19,8 +19,19 @@ router.post('/', auth, async (req, res) => {
 })
 router.get('/', async (req, res) => {
 
-    const result = await Products.find()
-    res.send(result)
+    const result = await Products.find().sort({'_id': 0}).exec(function(err,data){
+        if(err)
+        res.send(err)
+
+        res.send(data)
+    })
+    
+})
+
+router.get('/:uniqueID', auth, async(req,res) =>{
+    let product = await Products.findOne({ uniqueID: req.params.uniqueID })
+    if (!product) return res.status(400).send("Can't find product.")
+    res.send(product)
 })
 
 router.put('/:uniqueID', auth, async (req, res) => {

@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const variantSchema = new mongoose.Schema({
     size: { type: Number, required: true },
     price: { type: Number, required: true },
+    perCarton: { type: Number, required: true },
     url: { type: String, required: true }
 });
 
