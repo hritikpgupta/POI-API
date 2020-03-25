@@ -10,6 +10,7 @@ const wishListSchema = mongoose.Schema({
 
 const item = mongoose.Schema({
     productName: { type: String, require: true },
+    size: { type: Number, required: true },
     quantity: { type: Number, required: true },
     url: { type: String, require: true },
     amount: { type: Number, require: true }
