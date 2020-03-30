@@ -112,7 +112,6 @@ router.put('/addToWishlist/:id', auth, async (req, res) => {
         }
 
     }
-
     user.wishlistProducts = mywishList
     wishlist = await user.save()
     res.send({ success: "Updated" })
@@ -144,11 +143,11 @@ router.put('/addOrder/:id', auth, async (req, res) => {
     const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!user) return res.status(400).send({ error: "Not Found" })
     let order = {
+        items: req.body.items,
         orderID: req.body.orderID,
         totalAmount: req.body.totalAmount,
         companyName: req.body.companyName,
         address: req.body.address,
-        items: req.body.items,
         paymentMode: req.body.paymentMode
     }
     let myOrders = []
