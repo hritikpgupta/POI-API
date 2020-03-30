@@ -17,12 +17,14 @@ const item = mongoose.Schema({
 })
 
 const ordersSchema = mongoose.Schema({
-    items: [item],
+    
     orderID: { type: String, required: true },
+    orderDate: {type: String,required: true},
     totalAmount: { type: Number, required: true },
     companyName: { type: String, required: true },
     address: { type: String, required: true },
-    paymentMode: { type: String, required: true }
+    paymentMode: { type: String, required: true },
+    items: [item]
 })
 
 const User = mongoose.model('Users', new mongoose.Schema({
