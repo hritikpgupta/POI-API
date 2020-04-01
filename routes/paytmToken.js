@@ -77,6 +77,7 @@ router.post('/transaction', async(req,res) =>{
 paytmParams.head = {
     "signature"	: req.body.checksum
 };
+
 var post_data = JSON.stringify(paytmParams);
 var mid = req.body.mid
 var oid = req.body.orderId
@@ -99,7 +100,7 @@ var post_req = https.request(options, function(post_res) {
 
     post_res.on('end', function(){
         console.log('Response: ', response);
-        res.send({status: JSON.parse(response)})
+        res.send(JSON.parse(response))
     });
 });
 post_req.write(post_data);
