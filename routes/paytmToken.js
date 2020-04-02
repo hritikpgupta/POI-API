@@ -52,7 +52,7 @@ router.post('/generate_checksum', async (req, res) => {
     
     };
     paytm_checksum.genchecksumbystring(JSON.stringify(paytmParams.body),'WQRO1cyw78DjdXKi', function(err,checksum){
-    res.send(checksum)
+    res.send({token: checksum})
     } )
     
 })
