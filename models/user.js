@@ -19,6 +19,8 @@ const item = mongoose.Schema({
 const ordersSchema = mongoose.Schema({
     
     orderID: { type: String, required: true },
+    refNo: {type:String, required: true},
+    txnId: {type:String, required: true},
     orderDate: {type: String,required: true},
     totalAmount: { type: Number, required: true },
     companyName: { type: String, required: true },

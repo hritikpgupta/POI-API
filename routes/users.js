@@ -145,6 +145,8 @@ router.put('/addOrder/:id', auth, async (req, res) => {
     let order = {
         items: req.body.items,
         orderID: req.body.orderID,
+        refNo:req.body.refNo,
+        txnId:req.body.txnId,
         orderDate:req.body.orderDate,
         totalAmount: req.body.totalAmount,
         companyName: req.body.companyName,
