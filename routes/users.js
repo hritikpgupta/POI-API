@@ -30,7 +30,8 @@ router.post('/', async (req, res) => {
             address: req.body.address,
             gstin: req.body.gstin,
             wishlistProducts: req.body.wishlistProducts,
-            orders: req.body.orders
+            orders: req.body.orders,
+            cartItems:req.body.cartItems
         })
         user = await user.save()
         const token = jwt.sign(
@@ -87,7 +88,6 @@ router.get('/wishlist/:id', auth, async (req, res) => {
 })
 
 router.put('/addToWishlist/:id', auth, async (req, res) => {
-
     const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!user) return res.status(400).send({ error: "Not Found" })
     let wishlist = {
@@ -110,7 +110,6 @@ router.put('/addToWishlist/:id', auth, async (req, res) => {
         if(check === false){
             mywishList.push(wishlist)
         }
-
     }
     user.wishlistProducts = mywishList
     wishlist = await user.save()
@@ -160,6 +159,97 @@ router.put('/addOrder/:id', auth, async (req, res) => {
     order = await user.save()
     res.send({ success: "Updated" })
 
+})
+
+
+router.post('/addToCart/:id',auth,async(req,res) => {
+    const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+    if (!user) return res.status(400).send({ error: "Not Found" })
+    let cart = {
+        uniqueID: req.body.uniqueID,
+        productName: req.body.productName,
+        size: req.body.size,
+        quantity:req.body.quantity,
+        url:req.body.url,
+        amount: req.body.amount,
+        perCarton:req.body.perCarton
+    }
+    let check = false
+    var w 
+    let myCartList = []
+    myCartList = user.cartItems
+    if(myCartList.length === 0){
+        myCartList.push(cart)
+    }else{
+        for( w of myCartList){
+            if(w.size === cart.size && w.uniqueID.match(cart.uniqueID)){
+                check = true
+            }
+        }
+        if(check === false){
+            myCartList.push(cart)
+        }
+    }
+    user.cartItems = myCartList
+    cart = await user.save()
+    res.send({ success: "added" })
+})
+
+router.delete('/deleteCartItem/:id/:size/:uniqueID',auth, async(req,res) => {
+    let myCartList = []
+    const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+      if (!user) return res.status(400).send({ error: "Not Found" })
+    myCartList = user.cartItems
+    console.log(req.params.size)
+    for (var i = 0; i < myCartList.length; i++) {
+        console.log(myCartList[i].size)
+        if (req.params.size.match(myCartList[i].size) && req.params.uniqueID.match(myCartList[i].uniqueID)) {
+            console.log("Here...")
+            myCartList.splice(i, 1)
+            console.log(myCartList[1])
+            user.cartItems = myCartList
+            await user.save()
+            return res.send({ status: 'Deleted Successfully' })
+        }
+    }
+    res.status(400).send({ error: "Size is wrong.." })
+})
+
+router.get('/getAllCart/:id',auth, async(req,res) =>{
+    const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+    if (!result) return res.status(400).send({error: 'Number not registered.'})
+
+    res.send(result.cartItems)
+})
+
+
+
+
+router.put('/updateCart/:id',auth, async(req,res) =>{
+    let myCartList = []
+    const object = {
+        size: req.body.size,
+        uniqueID:req.body.uniqueID,
+        quantity:req.body.quantity,
+        amount:req.body.amount
+    }
+   const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
+   if (!user) return res.status(400).send({ error: "Not Found" })
+    console.log(user)
+    myCartList = user.cartItems
+    console.log(myCartList)
+    for (var i = 0; i < myCartList.length; i++) {
+        if (req.body.size === (myCartList[i].size) && req.body.uniqueID.match(myCartList[i].uniqueID)) {
+            var item = myCartList[i]
+            item.quantity = object.quantity
+            item.amount = object.amount
+            myCartList[i] = item
+            user.cartItems = myCartList
+            await user.save()
+            return res.send({success: "Updated"})
+        }
+    }
+    res.send({ success: "Not Found" })
 })
 
 module.exports = router; 

@@ -8,6 +8,19 @@ const wishListSchema = mongoose.Schema({
     generalUrl: { type: String, required: true }
 })
 
+const cartSchema = mongoose.Schema({
+    uniqueID: { type: String, required: true, unique: true },
+    productName: { type: String, required: true },
+    size: { type: Number, required: true },
+    quantity: { type: Number, required: true },
+    url: { type: String, required: true },
+    amount: {type:Number, required:true},
+    perCarton: { type: Number, required: true }
+
+})
+
+
+
 const item = mongoose.Schema({
     productName: { type: String, require: true },
     size: { type: Number, required: true },
@@ -41,7 +54,8 @@ const User = mongoose.model('Users', new mongoose.Schema({
     address: { type: String, required: true, minlength: 10 },
     gstin: { type: String, required: true },
     wishlistProducts: [wishListSchema],
-    orders: [ordersSchema]
+    orders: [ordersSchema],
+    cartItems:[cartSchema]
 
 }))
 
@@ -58,7 +72,8 @@ function validateUser(user) {
         address: Joi.string().required(),
         gstin: Joi.string().required(),
         wishlistProducts: Joi.array().min(0),
-        orders: Joi.array().min(0)
+        orders: Joi.array().min(0),
+         cartItems:Joi.array().min(0)
 
     }
 
