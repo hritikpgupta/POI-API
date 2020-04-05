@@ -184,6 +184,7 @@ router.post('/addToCart/:id',auth,async(req,res) => {
         for( w of myCartList){
             if(w.size === cart.size && w.uniqueID.match(cart.uniqueID)){
                 check = true
+                return res.status(409).send({success: "Success Idempotent"})
             }
         }
         if(check === false){
@@ -209,7 +210,7 @@ router.delete('/deleteCartItem/:id/:size/:uniqueID',auth, async(req,res) => {
             console.log(myCartList[1])
             user.cartItems = myCartList
             await user.save()
-            return res.send({ status: 'Deleted Successfully' })
+            return res.send(myCartList)
         }
     }
     res.status(400).send({ error: "Size is wrong.." })

@@ -11,7 +11,7 @@ const wishListSchema = mongoose.Schema({
 const cartSchema = mongoose.Schema({
     uniqueID: { type: String, required: true, unique: true },
     productName: { type: String, required: true },
-    size: { type: Number, required: true },
+    size: { type: String, required: true },
     quantity: { type: Number, required: true },
     url: { type: String, required: true },
     amount: {type:Number, required:true},
