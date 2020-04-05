@@ -184,11 +184,13 @@ router.post('/addToCart/:id',auth,async(req,res) => {
         for( w of myCartList){
             if(w.size === cart.size && w.uniqueID.match(cart.uniqueID)){
                 check = true
-                return res.status(409).send({success: "Success Idempotent"})
             }
         }
         if(check === false){
             myCartList.push(cart)
+
+        }else{
+            return res.status(409).send({success: "Success Idempotent"})
         }
     }
     user.cartItems = myCartList
