@@ -249,11 +249,11 @@ router.put('/updateCart/:id',auth, async(req,res) =>{
                 myCartList[i] = item
                 user.cartItems = myCartList
                 await user.save()
-                return res.send({success: "Updated"})
+                return res.status(200).send({success: "Updated"})
             }
         }
     }
-    res.send({ success: "Not Found" })
+    res.status(404).send({ success: "Not Found" })
 })
 
 module.exports = router; 
