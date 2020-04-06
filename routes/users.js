@@ -187,7 +187,6 @@ router.post('/addToCart/:id',auth,async(req,res) => {
                     check = true
                     return res.status(409).send({success: "Success Idempotent"})
                 }
-
             }
         }
         if(check === false){
@@ -239,18 +238,19 @@ router.put('/updateCart/:id',auth, async(req,res) =>{
     }
    const user = await User.findOne({ mobileNumber: { $eq: req.params.id } })
    if (!user) return res.status(400).send({ error: "Not Found" })
-    console.log(user)
     myCartList = user.cartItems
-    console.log(myCartList)
     for (var i = 0; i < myCartList.length; i++) {
-        if (req.body.size === (myCartList[i].size) && req.body.uniqueID.match(myCartList[i].uniqueID)) {
-            var item = myCartList[i]
-            item.quantity = object.quantity
-            item.amount = object.amount
-            myCartList[i] = item
-            user.cartItems = myCartList
-            await user.save()
-            return res.send({success: "Updated"})
+        if (req.body.size === parseFloat(myCartList[i].size) ) {
+
+            if(req.body.uniqueID === myCartList[i].uniqueID){
+                var item = myCartList[i]
+                item.quantity = object.quantity
+                item.amount = object.amount
+                myCartList[i] = item
+                user.cartItems = myCartList
+                await user.save()
+                return res.send({success: "Updated"})
+            }
         }
     }
     res.send({ success: "Not Found" })
