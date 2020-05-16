@@ -1,13 +1,8 @@
 const express = require('express');
-const admin = require('firebase-admin');
 const router = express.Router();
 const https = require('https');
 
-
-
 router.post('/', (request,response) => {
-
-
   const obj = {
     notification: {title: request.body.title, body: request.body.msg},
     priority: "high",
