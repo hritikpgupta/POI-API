@@ -6,6 +6,7 @@ router.post('/', (request,response) => {
   const obj = {
     notification: {title: request.body.title, body: request.body.msg},
     priority: "high",
+    icon:"myicon",
     registration_ids: request.body.registration_ids,
   }
     const options = {
