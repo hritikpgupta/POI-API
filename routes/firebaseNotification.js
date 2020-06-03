@@ -1,6 +1,15 @@
 const express = require('express');
+const admin = require('firebase-admin');
 const router = express.Router();
 const https = require('https');
+var serviceAccount = require("../key/privateKey.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://dpsadmin-339a7.firebaseio.com"
+});
+let db = admin.firestore();
+
+
 
 router.post('/', (request,response) => {
   const obj = {
@@ -31,6 +40,26 @@ router.post('/', (request,response) => {
       })
       req.write(JSON.stringify(obj))
       req.end()
+
+})
+
+
+
+router.post('/add', async (req,res) => {
+
+  let docRef = db.collection('node').doc('class');
+
+  let setAda = {
+    first: req.body.first,
+    last: req.body.last,
+    born: req.body.born
+  }
+  await docRef.set(setAda);
+
+  res.send({ success : setAda})
+
+
+
 
 })
 

@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 
 
 const wishListSchema = mongoose.Schema({
-    uniqueID: { type: String, required: true, unique: true },
+    uniqueID: { type: String, required: true },
     productName: { type: String, require: true },
     generalUrl: { type: String, required: true }
 })
 
 const cartSchema = mongoose.Schema({
-    uniqueID: { type: String, required: true, unique: true },
+    uniqueID: { type: String, required: true },
     productName: { type: String, required: true },
     size: { type: String, required: true },
     quantity: { type: Number, required: true },

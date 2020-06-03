@@ -31,6 +31,17 @@ router.post('/', async (req, res) => {
 
 })
 
+router.get('/allOrder', async(req,res) => {
+
+    const allUsers = await User.find();
+    
+
+    console.log(allUsers)
+    res.status(200).send({ status: allUsers })
+
+
+})
+
 function validate(auth) {
     const schema = {
         mobileNumber: Joi.number().required(),
@@ -39,5 +50,9 @@ function validate(auth) {
 
     return Joi.validate(auth, schema);
 }
+
+
+
+
 
 module.exports = router; 
