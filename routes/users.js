@@ -9,15 +9,12 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message);
-
     const salt = await bcrypt.genSalt(10)
     const result = await bcrypt.hash(req.body.password, salt)
-
     const existingUser = await User.findOne({ mobileNumber: { $eq: req.body.mobileNumber } })
     if (existingUser) {
         res.status(400).send({ error: "Number already Registered." })
     } else {
-
         let user = new User({
            // id: req.body.id,
             firstName: req.body.firstName,
@@ -40,8 +37,7 @@ router.post('/', async (req, res) => {
                 password: req.body.password
             },
             config.get('jwtPrivateKey'))
-
-        res.header('x-auth-token', token).send(user)
+        res.status(200).header('x-auth-token', token).send(user)
     }
 
 })
@@ -50,7 +46,6 @@ router.get('/:id', auth,async (req, res) => {
 
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!result) return res.status(400).send({error: 'Number not registered.'})
-
     res.send(result)
 })
 
@@ -74,7 +69,6 @@ router.put('/:id', auth, async (req, res) => {
 })
 
 router.get('/orders/:id', auth, async (req, res) => {
-
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } }).select({ orders: 1 })
     if (!result) return res.status(400).send({ error: "Not Found" })
     res.send({ orders: result.orders })
@@ -195,7 +189,7 @@ router.post('/addToCart/:id',auth,async(req,res) => {
     }
     user.cartItems = myCartList
     cart = await user.save()
-    res.send({ success: "added" })
+    res.status(200).send({ success: "added" })
 })
 
 router.delete('/deleteCartItem/:id/:size/:uniqueID',auth, async(req,res) => {
@@ -221,7 +215,6 @@ router.delete('/deleteCartItem/:id/:size/:uniqueID',auth, async(req,res) => {
 router.get('/getAllCart/:id',auth, async(req,res) =>{
     const result = await User.findOne({ mobileNumber: { $eq: req.params.id } })
     if (!result) return res.status(400).send({error: 'Number not registered.'})
-
     res.send(result.cartItems)
 })
 
@@ -257,3 +250,4 @@ router.put('/updateCart/:id',auth, async(req,res) =>{
 })
 
 module.exports = router; 
+

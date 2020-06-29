@@ -7,16 +7,11 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-
     const { error } = validate(req.body)
     if (error) return res.status(400).send( {error: error.details[0].message})
-
     let user = await User.findOne({ mobileNumber: req.body.mobileNumber })
-
     if (!user) return res.status(400).send( {error: 'No account registered with this number .'})
-
     const validPassword = await bcrypt.compare(req.body.password, user.password)
-
     if (validPassword) {
         const token = jwt.sign(
             {
@@ -28,16 +23,28 @@ router.post('/', async (req, res) => {
     } else {
         res.status(400).send({error: 'Wrong Password.'})
     }
-
 })
 
 router.get('/allOrder', async(req,res) => {
 
-    const allUsers = await User.find();
-    
+    let allUserOder = []
+    let finalList = []
+    const allOrders = await User.find().select('orders -_id');
+    for(order of allOrders){
+        allUserOder.push(order)
+    }
+    for(singleUserOrder of allUserOder){
 
-    console.log(allUsers)
-    res.status(200).send({ status: allUsers })
+        for (var i = 0; i < singleUserOrder.orders.length; i++){
+                finalList.push(singleUserOrder.orders[i])
+        }
+
+    }
+    finalList.sort(function(a,b){
+        return b.orderID - a.orderID   ;
+    })
+
+    res.status(200).send({ status: finalList })
 
 
 })

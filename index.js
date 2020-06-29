@@ -26,7 +26,7 @@ if (!config.get('jwtPrivateKey')) {
     process.exit(1)
 }
 mongoose
-    .connect('mongodb+srv://buuzuu:goforgold@mongo-demo-cluster-fu0uk.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
+    .connect('mongodb+srv://buuzuu:goforgold@mongo-demo-cluster-fu0uk.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true ,useUnifiedTopology: true  })
     .then(() => console.log('Connected to MongoDB....'))
     .catch(err => console.error('Could not connect...', err))
 
