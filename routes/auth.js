@@ -44,7 +44,7 @@ router.get('/allOrder', async(req,res) => {
         return b.orderID - a.orderID   ;
     })
 
-    res.status(200).send({ status: finalList })
+    res.status(200).send(finalList)
 
 
 })
