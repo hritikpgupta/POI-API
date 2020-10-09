@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "portfolio-messageservice",
+  "private_key_id": "016235f2b6b76ee4d73768fc8b18e6061173212b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwujOZqPCekWjH\nj4pETGPWgmF/HTRbt6Lg5ry7gIC/MxeIOzk4ahBe9G3ReXYlS9NLVPnWadpYB1+k\nAqJCzbSsqr+gnHmvjFe08SCtnEdUT7zz5XTtYtXFo14fXIZZ8z19M7l1rz8f7zTm\nsh2ekjFeADvaFm5AXVHVWIi6voPLAje0PB+ZljAyoEIcsL1G/OJg/vLYSNbd+Dbz\nm4pMiJG8iPhKhXIP9+N4eN0oko/HcpOq5XsebuBC7Vxgt/xj6GH9IJ+HFVSumy1w\n6MNa5c4ldWuroCtzP2DfyQTUOU1bG3sCSgKF4q7nxgGvOeEYqWdD86u5HwbmWNxu\n+n90rMJ5AgMBAAECggEADPLLmo/R93BEetClywzEyN/7KD7ZyfmJtcw6GkvXQwsJ\nh5n9Poio4+gpTq6FTUTBubSDbKYLUSVTKNdnj5j2SqtlCG3Gjans+C0tnYLEiCUi\nfUU73LO/4W/vksEq99a2U+DRDxIUwDB80gVNXcOs2cwPFpLLp6wetZC7zeDtE5fZ\ntHYuzQYaW6DcH3mqpUIzKwOkV/t78BrWiZJG4beVzffDK88MGNLTnO9D5Oi8fs+/\npD1GKg8TcdkUvy9+pLdH0Ck6w03Up9U8TQ/E/Wo7Onp49bi3aWaV6BIcvZho0Lxb\n6pfikSsOAcU85j6CbZoJZvJNe+sk1pkKt8wURDy+PQKBgQD4gsStjRXs7G1+J0wp\nUGxyDXvWfPhrS8jYYFY1d75ZKo/29iMKgw0d+p5tfY1Jz82kaXMNS8I3AIf0R2an\nB3QnCvrTuiVDxr70JPigjznC+rM6pNjo3K78dgiX8x8dYlYyUpcfdAZyJSQFk0mT\n+61a0aT8GZylZbks4ElbGnjiJQKBgQC2DaHejul1GNfdfctcWO/ElzseMHxQq1/d\nOi4MjRx03YqjVVvrJj0UAlFxI2ISPKw6TxYl1Nj2/r1KH016MJgVEcmDiCGVXmIC\nBVwpE6khX9k2jCWhxhtaEz+1fr5VEgujB32eLAtUsbgdRXY0Beozm0E9xdXNrUD/\nLUxcrMkMxQKBgBwe8BKTfH+q4Vj9KWkjaKIfVHwY+CNsF/YkMJ0sR6XfYxsXDzAJ\nVFqoGXVaV7qagTKxnAtNH1UKAlhqG/uapFIms+txjPX2b3VBGcFRc7/UjqN8M+9l\nyYdX8/D92e+BSS+4mNE+V9xix4i5+gF84Uj9oCXG4Cr3L9UcLDDa9gLhAoGAHntH\n1/i7tAR12DsAurSVaKgdmN9rYSJgiaz9GtLhqduSI+jd3BBp95ivxC61c/I+sACf\n57OspCZg0TFOip/qRtTUlbZMUTMdW9ND7AjDr7fZqZ1ri5uc5scESsIu4hWEZ0aQ\nzNP5DbQ37Ia91NYMsZlUIiCmvKo+kLsn5vhzLTUCgYAWp+wH/PKAdWjgZLvCrg8s\nr/oOgv7ZZAKnd1P0diz8MfTYUXyWbNAERwzQr/1CoxMfeWK8oULJT5vdOxtQ7Jyz\n0u1QH0eWhhTMPkEoTdxvXDUi/TWzQupgECLRVfIlcdsWjTfCs+whrfaf+YVZTUiN\n+4CxXXEP1J8Z3MqI9x34rA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-zkr2i@portfolio-messageservice.iam.gserviceaccount.com",
+  "client_id": "113038328977677819519",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zkr2i%40portfolio-messageservice.iam.gserviceaccount.com"
+}
