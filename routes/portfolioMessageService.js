@@ -1,12 +1,12 @@
 const express = require('express');
-const admin = require('firebase-admin');
-const router = express.Router();
-var serviceAccount = require("../key/firebaseKeyPortfolio.json");
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+const admin2 = require('firebase-admin');
+router = express.Router();
+var serviceAccount2 = require("../key/firebaseKeyPortfolio.json");
+admin2.initializeApp({
+    credential: admin2.credential.cert(serviceAccount2),
     databaseURL: "https://portfolio-messageservice.firebaseio.com"
   });
-const db = admin.firestore();
+const db = admin2.firestore();
 
 
 router.post('/', async(req,res) => {

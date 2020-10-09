@@ -9,7 +9,6 @@ const firebase = require('./routes/firebaseNotification')
 const config = require('config')
 const auth = require('./routes/auth')
 const upload = require('./routes/uploadProfilePic')
-const portfolio = require('./routes/portfolioMessageService')
 const app = express()
 
 
@@ -40,7 +39,6 @@ app.use('/paytm', token)
 app.use('/resetPassword', reset)
 app.use('/uploadProfileImage', upload)
 app.use('/notify',firebase)
-app.use('/portfolio',portfolio)
 
 
 const port = process.env.PORT || 3000;
